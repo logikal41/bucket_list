@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201060753) do
+ActiveRecord::Schema.define(version: 20171201075915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,11 @@ ActiveRecord::Schema.define(version: 20171201060753) do
   end
 
   create_table "destinations", force: :cascade do |t|
+    t.text "name"
+    t.bigint "list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
+    t.index ["list_id"], name: "index_destinations_on_list_id"
   end
 
   create_table "lists", force: :cascade do |t|
@@ -37,4 +39,5 @@ ActiveRecord::Schema.define(version: 20171201060753) do
   end
 
   add_foreign_key "activities", "lists"
+  add_foreign_key "destinations", "lists"
 end

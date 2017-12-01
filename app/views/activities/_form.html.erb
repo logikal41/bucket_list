@@ -1,15 +1,11 @@
 <h1><%= @activity.id ? 'Edit Activity' : 'Add New Activity To List' %></h1>
 <hr />
 
-<%= form_for @activity do |f| %>
+<%= form_for [@list, @activity] do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name, required: true %>
     <br />
 
-    <%= f.label :image %>
-    <%= f.url_field :image %>
-    <br />
-
-    <%= f.submit %>
+    <%= f.submit 'Add Activity' %>
     
 <% end %>

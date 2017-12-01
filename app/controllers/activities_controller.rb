@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
     before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
       def index
-        @activities = @list.activites
+        @activities = @list.activites.all
       end
     
       def new
@@ -11,11 +11,9 @@ class ActivitiesController < ApplicationController
       end
     
       def show
-        @activity = @list.activity.find(params[:id])
       end
     
       def edit
-        @activity = @list.activities.find(params[:id])
       end
     
       def create
@@ -23,28 +21,27 @@ class ActivitiesController < ApplicationController
         if @activity.save
           redirect_to list_path(@list)
         else
-          render :new
+          render :show # there is an issue with saving, this needs to be #new when you fix it
         end 
       end
     
       def update
-        @activity = @list.activities.find(params[:id])
         if @activity.update(activity_params)
-          redirect_to list_activity_path([@list, @activity])
+          redirect_to list_path(@list)
         else
           render :edit
         end
       end
     
       def destroy
-        @list.activity.find(params[:id]).destroy
-        redirect_to list_activities_ =path
+        @activity.destroy
+        redirect_to list_path(@list)
       end
     
       private
     
       def activity_params 
-        params.require(:activity).permit(:name, :image)
+        params.require(:activity).permit(:name, :image, :list_id)
       end
 
       def set_list
