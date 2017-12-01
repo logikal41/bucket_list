@@ -1,0 +1,21 @@
+<h1><%= @list.id ? 'Edit List' : 'Create New List' %></h1>
+<hr />
+<%= form_for @list do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true %>
+    <br />
+    
+    <%= f.label :activity %>
+    <%= f.text_area :activity, required: true %>
+    <br />
+
+    <%= f.label :destination %>
+    <%= f.text_field :destination %>
+    <br />
+
+    <%= f.label :image %>
+    <%= f.url_field :image %>
+    <br />
+    <%= f.submit %>
+    
+<% end %>
