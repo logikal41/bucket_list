@@ -1,5 +1,4 @@
-<h1>List Name: <%= @list.name %></h1>
-<%# <h2>Destination: <%= @list.destination.name </h2> %>
+<h1>Bucket List Name: <%= @list.name %></h1>
 <img src='<%= @list.image %>'/>
 
 <hr />
@@ -8,12 +7,14 @@
 
 <h2> List items: </h2>
 
+<ol>
 <% @list.activities.each do |activity| %>
-    <p> print something </p>
-    <h3><%= activity.name %></h3>
+    <li><h3><%= activity.name %> </h3>
     <%= link_to 'Edit', edit_list_activity_path(list_id: @list, id: activity) %>
     <%= link_to 'Delete', list_activity_path(list_id: @list, id: activity), method: :delete %>
+    </li>
 <% end %>
+</ol>
 
 <hr />
 <br />
