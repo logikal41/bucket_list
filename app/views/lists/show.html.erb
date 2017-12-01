@@ -1,4 +1,14 @@
 <h1>List Name: <%= @list.name %></h1>
-<h2>Activity: <%= @list.activity %></h2>
-<h2>Destination: <%= @list.destination %></h2>
+<%# <h2>Destination: <%= @list.destination.name </h2> %>
 <img src='<%= @list.image %>'/>
+
+<%= link_to 'Add an item', new_list_activity_path(@list) %>
+
+<h2> List items: </h2>
+
+<% @list.activities.each do |activity| %>
+    <p> print something </p>
+    <h3><%= activity.name %></h3>
+<% end %>
+
+<%= link_to 'Back', lists_path %>
